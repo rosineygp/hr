@@ -1,13 +1,8 @@
-(defn f [n]
-  (if (> (count n) 1)
-    (f (str (reduce +
-                    (map #(BigInteger. (str %)) n))))
-    n))
-
 (defn superDigit [n k]
-  (f (clojure.string/join (repeat k n))))
+  (let [x (mod (* (BigInteger. n) k) 9)]
+    (if (= x 0) "9" (str x))))
 
 ; tests
-(println (superDigit 148 3))  ; 3
-(println (superDigit 9875 4)) ; 8
-(println (superDigit 123 3))  ; 9
+(println (superDigit "148" 3))  ; 3
+(println (superDigit "9875" 4)) ; 8
+(println (superDigit "123" 3))  ; 9
